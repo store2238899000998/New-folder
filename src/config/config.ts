@@ -16,9 +16,9 @@ export const config = {
 
   // Database Configuration
   database: {
-    // Force SQLite for local development if PostgreSQL URL is not accessible
-    url: process.env.NODE_ENV === 'production' ? (process.env.DATABASE_URL || 'sqlite://./investment_bot.db') : 'sqlite://./investment_bot.db',
-    type: process.env.NODE_ENV === 'production' && process.env.DATABASE_URL?.startsWith('postgresql') ? 'postgres' : 'sqlite',
+    // Use PostgreSQL from Railway
+    url: process.env.DATABASE_URL || 'postgresql://postgres:password@localhost:5432/investment_bot',
+    type: 'postgres',
     synchronize: process.env.NODE_ENV !== 'production',
     logging: process.env.NODE_ENV === 'development',
     ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
