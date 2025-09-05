@@ -31,7 +31,7 @@ class InvestmentBotApp {
     this.app.use(express.urlencoded({ extended: true }));
 
     // Health check endpoint
-    this.app.get('/health', (req, res) => {
+    this.app.get('/health', (req: express.Request, res: express.Response) => {
       res.json({
         status: 'healthy',
         timestamp: new Date().toISOString(),
@@ -41,7 +41,7 @@ class InvestmentBotApp {
     });
 
     // Admin API endpoints
-    this.app.get('/admin/stats', async (req, res) => {
+    this.app.get('/admin/stats', async (req: express.Request, res: express.Response) => {
       try {
         // Basic stats endpoint for monitoring
         res.json({
