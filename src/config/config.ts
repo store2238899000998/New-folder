@@ -45,22 +45,26 @@ export const config = {
   },
 };
 
-// Validation - Only throw error in production
-if (process.env.NODE_ENV === 'production') {
-  const requiredEnvVars = ['ADMIN_BOT_TOKEN', 'USER_BOT_TOKEN', 'ADMIN_CHAT_ID'];
+// Validation - Check for required environment variables
+const requiredEnvVars = ['ADMIN_BOT_TOKEN', 'USER_BOT_TOKEN', 'ADMIN_CHAT_ID'];
 
-  for (const envVar of requiredEnvVars) {
-    if (!process.env[envVar]) {
-      throw new Error(`Missing required environment variable: ${envVar}`);
-    }
-  }
-} else {
-  // Development mode - warn about missing variables but don't crash
-  const requiredEnvVars = ['ADMIN_BOT_TOKEN', 'USER_BOT_TOKEN', 'ADMIN_CHAT_ID'];
-  
-  for (const envVar of requiredEnvVars) {
-    if (!process.env[envVar]) {
-      console.warn(`⚠️  Warning: Missing environment variable: ${envVar}`);
+for (const envVar of requiredEnvVars) {
+  if (!process.env[envVar]) {
+    const errorMsg = `Missing required environment variable: ${envVar}`;
+    if (process.env.NODE_ENV === 'production') {
+      throw new Error(errorMsg);
+    } else {
+      console.warn(`⚠️  Warning: ${errorMsg}`);
     }
   }
 }
+
+// Validate bot tokens format
+if (config.bots.admin.token && !config.bots.admin.token.includes(':')) {
+  throw new Error('Invalid ADMIN_BOT_TOKEN format. Should be like: 123456789:ABCdefGHIjklMNOpqrsTUVwxyz');
+}
+
+if (config.bots.user.token && !config.bots.user.token.includes(':')) {
+  throw new Error('Invalid USER_BOT_TOKEN format. Should be like: 123456789:ABCdefGHIjklMNOpqrsTUVwxyz');
+}
+

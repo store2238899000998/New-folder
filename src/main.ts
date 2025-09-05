@@ -75,11 +75,21 @@ class InvestmentBotApp {
       logger.info('✅ ROI Scheduler started');
 
       // Start bots
-      await this.userBot.start();
-      logger.info('✅ User bot started');
+      try {
+        await this.userBot.start();
+        logger.info('✅ User bot started');
+      } catch (error) {
+        logger.error('❌ Error starting user bot:', error);
+        throw error;
+      }
 
-      await this.adminBot.start();
-      logger.info('✅ Admin bot started');
+      try {
+        await this.adminBot.start();
+        logger.info('✅ Admin bot started');
+      } catch (error) {
+        logger.error('❌ Error starting admin bot:', error);
+        throw error;
+      }
 
       // Start Express server
       this.app.listen(config.app.port, () => {
