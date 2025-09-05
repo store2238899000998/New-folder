@@ -23,13 +23,13 @@ export class InvestmentHistory {
   @Column({ type: 'enum', enum: TransactionType })
   transaction_type: TransactionType;
 
-  @Column({ type: 'decimal', precision: 15, scale: 2 })
+  @Column({ type: 'numeric', precision: 15, scale: 2 })
   amount: number;
 
-  @Column({ type: 'decimal', precision: 15, scale: 2 })
+  @Column({ type: 'numeric', precision: 15, scale: 2 })
   balance_before: number;
 
-  @Column({ type: 'decimal', precision: 15, scale: 2 })
+  @Column({ type: 'numeric', precision: 15, scale: 2 })
   balance_after: number;
 
   @Column({ type: 'text', nullable: true })

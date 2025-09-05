@@ -22,10 +22,10 @@ export class User {
   @Column({ length: 100, nullable: true })
   country: string;
 
-  @Column({ type: 'decimal', precision: 15, scale: 2, default: 0 })
+  @Column({ type: 'numeric', precision: 15, scale: 2, default: 0 })
   initial_balance: number;
 
-  @Column({ type: 'decimal', precision: 15, scale: 2, default: 0 })
+  @Column({ type: 'numeric', precision: 15, scale: 2, default: 0 })
   current_balance: number;
 
   @Column({ type: 'int', default: 0 })
@@ -34,7 +34,7 @@ export class User {
   @Column({ type: 'int', default: 4 })
   max_roi_cycles: number;
 
-  @Column({ type: 'datetime', nullable: true })
+  @Column({ type: 'timestamp', nullable: true })
   next_roi_date: Date;
 
   @Column({ type: 'boolean', default: false })

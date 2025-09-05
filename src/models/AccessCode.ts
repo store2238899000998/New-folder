@@ -11,7 +11,7 @@ export class AccessCode {
   @Column({ type: 'varchar', length: 255 })
   name: string;
 
-  @Column({ type: 'decimal', precision: 15, scale: 2 })
+  @Column({ type: 'numeric', precision: 15, scale: 2 })
   initial_balance: number;
 
   @Column({ type: 'boolean', default: false })
@@ -20,13 +20,13 @@ export class AccessCode {
   @Column({ type: 'bigint', nullable: true })
   used_by: string;
 
-  @Column({ type: 'datetime', nullable: true })
+  @Column({ type: 'timestamp', nullable: true })
   used_at: Date;
 
   @Column({ type: 'bigint', nullable: true })
   preassigned_user_id: string;
 
-  @Column({ type: 'datetime', nullable: true })
+  @Column({ type: 'timestamp', nullable: true })
   expires_at: Date;
 
   @CreateDateColumn()

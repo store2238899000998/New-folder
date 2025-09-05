@@ -30,7 +30,7 @@ export class SupportTicket {
   @Column({ type: 'bigint', nullable: true })
   responded_by: string;
 
-  @Column({ type: 'datetime', nullable: true })
+  @Column({ type: 'timestamp', nullable: true })
   responded_at: Date;
 
   @CreateDateColumn()
